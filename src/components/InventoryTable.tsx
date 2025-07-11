@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Table,
     TableBody,
@@ -6,47 +8,33 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table";
+import { Input } from "./ui/input";
+import { Search } from "lucide-react";
+import { Combobox } from "./ui/combo-box";
+import { useState } from "react";
   
   const plants = [
     {
-      id: 101,
-      name: "Wireless Headphones",
-      category: "Electronics",
+      id: '349inkopsnj',
+      name: "Puprple Hibiscus",
+      category: "outdoor",
       price: 59.99,
-      stock: 4.5,
-    },
-    {
-      id: 102,
-      name: "Yoga Mat",
-      category: "Sports & Fitness",
-      price: 25.0,
-      stock: 4.8,
-    },
-    {
-      id: 103,
-      name: "Coffee Maker",
-      category: "Home Appliances",
-      price: 80.0,
-      stock: 4.2,
-    },
-    {
-      id: 104,
-      name: "Running Shoes",
-      category: "Sportswear",
-      price: 70.0,
-      stock: 4.6,
-    },
-    {
-      id: 105,
-      name: "Smartwatch",
-      category: "Electronics",
-      price: 120.0,
-      stock: 4.7,
-    },
+      stock: 4,
+    }
+    
   ];
   
   export default function InventoryTable() {
+const [selectedCategory, SetSelectedCategory] = useState('')
     return (
+      <div className="w-full">
+      <div className="flex items-center gap-2 py-4">
+        <div className="relative max-w--sm w-full">
+          <Input placeholder="Filter plants..." className="pl-10"/>
+        <Search className="absolute h-4 w-4 left-3 top-1/2 transform -translate-y-1/2" />
+        </div>
+        <Combobox value={selectedCategory} onChange={(val) => SetSelectedCategory(val) }/>
+      </div>
       <div className="w-full border rounded-md overflow-hidden">
         <Table>
           <TableHeader>
@@ -78,6 +66,8 @@ import {
           </TableBody>
         </Table>
       </div>
+      </div>
+      
     );
   }
   
